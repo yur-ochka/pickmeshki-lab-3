@@ -1,12 +1,12 @@
 package lang
 
 import (
+	
 	"io"
 	"log"
 	"net/http"
 	"strings"
-
-	"github.com/roman-mazur/architecture-lab-3/painter"
+	"github.com/yur-ochka/pickmeshki-lab-3/painter"
 )
 
 // HttpHandler конструює обробник HTTP запитів, який дані з запиту віддає у Parser, а потім відправляє отриманий список

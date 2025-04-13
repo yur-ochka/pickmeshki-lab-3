@@ -3,9 +3,9 @@ package main
 import (
 	"net/http"
 
-	"github.com/roman-mazur/architecture-lab-3/painter"
-	"github.com/roman-mazur/architecture-lab-3/painter/lang"
-	"github.com/roman-mazur/architecture-lab-3/ui"
+	"github.com/yur-ochka/pickmeshki-lab-3/painter"
+	"github.com/yur-ochka/pickmeshki-lab-3/painter/lang"
+	"github.com/yur-ochka/pickmeshki-lab-3/ui"
 )
 
 func main() {
