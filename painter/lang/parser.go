@@ -109,12 +109,12 @@ func (p *Parser) parseLine(line string) error {
 	return nil
 }
 
-func parseInts(args []string) ([]int, error) {
-	vals := make([]int, len(args))
+func parseInts(args []string) ([]float64, error) {
+	vals := make([]float64, len(args))
 	for i, a := range args {
-		v, err := strconv.Atoi(a)
+		v, err := strconv.ParseFloat(a, 64)
 		if err != nil {
-			return nil, fmt.Errorf("invalid int argument: %v", a)
+			return nil, fmt.Errorf("invalid float argument: %v", a)
 		}
 		vals[i] = v
 	}
