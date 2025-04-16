@@ -64,7 +64,7 @@ func (p *Parser) parseLine(line string) error {
 	case "green":
 		p.lastBgColor = painter.OperationFunc(painter.GreenFill)
 	case "reset":
-		p.lastBgColor = painter.OperationFunc(painter.WhiteFill)
+		p.lastBgColor = painter.OperationFunc(painter.ResetScreen)
 		p.lastBgRect = nil
 		p.updateOp = nil
 		p.figures = nil

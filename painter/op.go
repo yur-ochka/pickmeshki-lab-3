@@ -50,10 +50,14 @@ type BgRectangle struct {
 }
 
 func (op *BgRectangle) Do(t screen.Texture) bool {
+	bounds := t.Bounds()
+	width := float64(bounds.Dx())
+	height := float64(bounds.Dy())
+	
 	t.Fill(image.Rect(
-		int(op.X1), int(op.Y1),
-		int(op.X2), int(op.Y2)),
-		color.RGBA{0, 255, 0, 255}, screen.Src,
+		int(op.X1 * width), int(op.Y1 * height),
+		int(op.X2 * width), int(op.Y2 * height)),
+		color.Black, screen.Src,
 	)
 	return false
 }
@@ -64,14 +68,32 @@ type Figure struct {
 }
 
 func (op *Figure) Do(t screen.Texture) bool {
+	bounds := t.Bounds()
+	width := float64(bounds.Dx())
+	height := float64(bounds.Dy())
+	
+	x := int(op.X * width)
+	y := int(op.Y * height)
+	
+	barWidth := 60
+	barLength := 200
+	
+	// Draw vertical bar (main part of T)
 	t.Fill(image.Rect(
-		int(op.X-150), int(op.Y-100),
-		int(op.X+150), int(op.Y),
-	), op.C, draw.Src)
+		x-barWidth/2,
+		y-barLength/2,
+		x+barWidth/2,
+		y+barLength/2,
+	), color.RGBA{255, 255, 0, 255}, draw.Src)
+	
+	// Draw horizontal bar (right part of T)
 	t.Fill(image.Rect(
-		int(op.X-50), int(op.Y),
-		int(op.X+50), int(op.Y+100),
-	), op.C, draw.Src)
+		x,
+		y-barWidth/2,
+		x+barLength/2,
+		y+barWidth/2,
+	), color.RGBA{255, 255, 0, 255}, draw.Src)
+	
 	return false
 }
 
@@ -89,5 +111,5 @@ func (op *Move) Do(t screen.Texture) bool {
 }
 
 func ResetScreen(t screen.Texture) {
-	t.Fill(t.Bounds(), color.RGBA{0, 255, 0, 255}, draw.Src)
+	t.Fill(t.Bounds(), color.Black, draw.Src)
 }
