@@ -17,6 +17,9 @@ jobs:
         with:
           go-version: stable
 
+      - name: Build all packages
+        run: go build -v ./...
+
       - name: Build cmd/painter
         run: go build -v -o painter_app ./cmd/painter
 
